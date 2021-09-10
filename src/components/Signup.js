@@ -7,6 +7,7 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const {name, email, password, cpassword} = credentials
+        if(password === cpassword){
         const response = await fetch(`http://localhost:5000/api/auth/createUser`, {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
           headers: {
@@ -24,6 +25,10 @@ const Signup = () => {
         else {
           alert("Invalid credentials");
         }
+      }
+      else{
+        alert("Password and confirm passwords don't match");
+      }
       };
       const onChange = (e) => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
